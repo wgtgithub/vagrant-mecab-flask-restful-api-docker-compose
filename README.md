@@ -16,6 +16,9 @@ Usage:
     - flask run
     - if stop press ctrl+c
 
+- api check
+    - curl http://localhost/targetwords/NiziProjectから選ばれたNiziUの９人のMember-Mako,Rio,Maya,Rio,Riku,Ayaka,Mayuka,MiihiそしてNina 
+
 About Docker Image
 - Dockerfile uses wgtdocker/mecab-python-docker:latest as docker pull image
 - You can check the resource the following url
