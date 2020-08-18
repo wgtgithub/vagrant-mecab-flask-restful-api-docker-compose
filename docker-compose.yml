@@ -1,17 +1,15 @@
 version: '3'
 services:
 
-  redis:
-      image: redis
-
-  web:
-    #entrypoint: ["sh", "-c", "sleep 2073600"]
-    build:
-      context: ./web/
-    ports:
-      - "5000:5000"
+  mecab:
+#    entrypoint: ["sh", "-c", "sleep 2073600"]
+    image: wgtdocker/mecab-0.996-alpine3.12:latest
+    volumes:
+      - mecab-libexec:/usr/local/libexec
+      - mecab-backup:/root/mecab-backup
+      - mecab-etc:/usr/local/etc
     links:
-      - redis
+      - web
 
   nginx:
     restart: always
@@ -20,4 +18,27 @@ services:
       - "80:80"
     links:
       - web
+
+  web:
+#    entrypoint: ["sh", "-c", "sleep 2073600"]
+    build:
+      context: ./web/
+    ports:
+      - "5000:5000"
+    links:
+      - redis
+    volumes:
+      - mecab-libexec:/usr/local/libexec
+      - mecab-backup:/root/mecab-backup
+      - mecab-etc:/usr/local/etc
+
+  redis:
+      image: redis
+
+volumes:
+  mecab-libexec:
+  mecab-backup:
+  mecab-etc:
+
+
 

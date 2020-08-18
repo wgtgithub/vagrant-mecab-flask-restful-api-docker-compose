@@ -11,4 +11,4 @@ flask_bootstrap
 flask-debug
 flask-reqarg
 requests
-mecab-python3
+#mecab-python3
